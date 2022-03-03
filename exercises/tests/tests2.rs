@@ -8,6 +8,6 @@
 mod tests {
     #[test]
     fn you_can_assert_eq() {
-        assert_eq!();
+        assert_eq!("6".parse::<i32>(),Ok(6));
     }
 }
