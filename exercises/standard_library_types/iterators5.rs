@@ -14,7 +14,7 @@
 
 use std::collections::HashMap;
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
 enum Progress {
     None,
     Some,
@@ -34,6 +34,23 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // map is a hashmap with String keys and Progress values.
     // map = { "variables1": Complete, "from_str": None, ... }
+    let mut count: usize = 0;
+
+    // for (key, value) in map {
+    //     println!("KEY {:?}", key);
+    //     println!("VALUE {:?}", value);
+        
+    //     if value == &Progress::Complete {
+    //         // println!("VALUE {:?}", value);
+    //         count +=1 
+    //     }
+    // }
+    for val in map.values() {
+        if val == &Progress::Complete {
+        count +=1 
+    }
+}
+return count as usize
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -52,6 +69,26 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // collection is a slice of hashmaps.
     // collection = [{ "variables1": Complete, "from_str": None, ... },
     //     { "variables2": Complete, ... }, ... ]
+    let mut count: usize = 0;
+
+    let mut maps = collection.iter();
+    for i in maps {
+        println!("MAPS {:?}", i );
+        for (key, value) in i {
+            println!("VALUE {:?}", value );
+            if value == &Progress::Complete {
+                count +=1 
+            }
+        }
+    
+    }
+
+    // println!("MAPS {:?}", maps.next() );
+    
+
+    
+    // for (key, value) in collection.iter() { }
+    count as usize
 }
 
 #[cfg(test)]
